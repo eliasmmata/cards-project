@@ -1,3 +1,12 @@
+# Cards Project
+
+Plataforma con “cards” para la visualización de posts o comentarios realizados por un usuario
+
+Resultados ofrecidos por la llamada GET de https://jsonplaceholder.typicode.com/posts.
+
+# Funcionalidad
+
+Permitir al usuario administrar y visualizar los posts todos de los usuarios disponibles en la herramienta.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
