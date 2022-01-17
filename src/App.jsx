@@ -1,4 +1,5 @@
-
+import React from 'react';
+import Posts from './components/Posts';
 
 // ESTOS ESTILOS TIENEN QUE ESTAR LO ULTIMO 
 import './App.scss';
@@ -9,9 +10,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Posts/>
       </header>
     </div>
   );
