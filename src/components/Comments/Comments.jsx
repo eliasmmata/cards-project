@@ -14,14 +14,14 @@ export function generateRandomDate() {
 const Comments = ({ currentUserId }) => {
     // Ver comentarios al clickar
     const [showComments, setShowComments] = useState(false);
-     // Cambiar texto para ocultar comentarios
+    // Cambiar texto para ocultar comentarios
     const [buttonText, setButtonText] = useState(false);
 
     const onClick = () => {
         setShowComments(!showComments);
         setButtonText(!buttonText);
     }
-   
+
     const [error, setError] = useState(null);
 
     const [isLoaded, setIsLoaded] = useState(false);
@@ -63,7 +63,7 @@ const Comments = ({ currentUserId }) => {
             })
         }
     }
-    
+
     const updateComment = (text, commentId) => {
         updateComments(text).then(() => {
             const updatedBackendComments = backendComments.map((backendComment) => {
@@ -98,29 +98,35 @@ const Comments = ({ currentUserId }) => {
         return (
             <div className="comments-container">
                 <div className="comments-form-title">
-                    <p style={{textAlign:`right`, margin: `0`, padding:`0 1rem 1rem 3rem`, fontSize: `1.5rem`}}>{rootComments.length} comentarios</p>
+                    <p style={{ textAlign: `right`, margin: `0`, padding: `0 1rem 1rem 3rem`, fontSize: `1.5rem` }}>{rootComments.length} comentarios</p>
                 </div>
                 <CommentForm submitLabel="Enviar" handleSubmit={addComment} />
                 <p
-                onClick={onClick}
-                className="comments-read"> {buttonText ? 'Ocultar comentarios' : 'Ver comentarios anteriores' }</p>
-                {showComments ? 
-                <div className="comments-list">
-                    {rootComments.map((rootComment, index) => (
-                        <Comment
-                            key={rootComment.id}
-                            comment={rootComment}
-                            date={generateRandomDate()}
-                            replies={getReplies(rootComment.id)}
-                            currentUserId={currentUserId}
-                            deleteComment={deleteComment}
-                            activeComment={activeComment}
-                            setActiveComment={setActiveComment}
-                            addComment={addComment}
-                            updateComment={updateComment}
-                        />
-                    ))}
-                </div> : null}
+                    onClick={onClick}
+                    className="comments-read"> {buttonText ? 'Ocultar comentarios' : 'Ver comentarios'}
+                    {!buttonText ?
+                    <i className="pi pi-sort-amount-down-alt" style={{'fontSize': '1em', marginLeft:`2rem`}}></i>
+                    : <i className="pi pi-sort-amount-up" style={{'fontSize': '1em', marginLeft:`2rem`}}></i>
+                    }
+                </p>
+                
+                {showComments ?
+                    <div className="comments-list">
+                        {rootComments.map((rootComment, index) => (
+                            <Comment
+                                key={rootComment.id}
+                                comment={rootComment}
+                                date={generateRandomDate()}
+                                replies={getReplies(rootComment.id)}
+                                currentUserId={currentUserId}
+                                deleteComment={deleteComment}
+                                activeComment={activeComment}
+                                setActiveComment={setActiveComment}
+                                addComment={addComment}
+                                updateComment={updateComment}
+                            />
+                        ))}
+                    </div> : null}
             </div>
         );
     }

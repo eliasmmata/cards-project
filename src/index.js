@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
+import "primeicons/primeicons.css"; 
 import './index.scss';
 import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
