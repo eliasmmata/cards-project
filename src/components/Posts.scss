@@ -8,12 +8,17 @@
         & h2 {
             text-transform: uppercase;
             font-weight: 600;
+            background-color: $blackMain;
+            color: $blueLight;
+            padding: 3rem 0;
+            width: calc(100% + 4rem);
+            margin-left: -2rem;
             & span {
-                background-color: $grey;
-                color: $blackMain;
+                background-color: $blueLight;
+                color: $green;
                 border-radius: 50%;
-                border: 1px solid $blackMain;
-                padding: 0 0.9rem;
+                border: 0.6rem solid $greenLight;
+                padding: 0 0.8rem;
                 text-align: center;
             }
         }
