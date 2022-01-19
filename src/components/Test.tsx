@@ -1,33 +1,38 @@
-import React, { useState, useEffect } from "react";
+/* import React, { useState, useEffect } from "react";
 import Comments, { generateRandomDate } from "./Comments/Comments";
 import { getPosts } from "../Api/Api";
 
-import './Posts.scss';
+import TypedPosts from "../Types/Posts.type";
+
+
 import PaginationComponent from "./Pagination/Pagination";
+import './Posts.scss';
+
 
 const Posts = () => {
     
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<TypedPosts[]>([]);
+
 
     useEffect(() => {
         getPosts().then(
-            (res) => {
+            (res:any) => {
                 setPosts(res);
                 setIsLoaded(true);
             },
-            (error) => {
+            (error: Error) => {
                 setIsLoaded(true);
-                setError(error);
+                setError(error as never);
             }
         );
     }, []);
 
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <div>Error: {error}</div>;
     } else if (!isLoaded) {
         return <h3 style={{ textAlign: `center` }}>Loading...</h3>;
     } else {
@@ -36,7 +41,7 @@ const Posts = () => {
                 <PaginationComponent
                     
                 />
-                {posts.map((post, index) => (
+                {posts.map((post:TypedPosts, index:number) => (
                     <div className="post-with-comments-container" key={`${post.userId}${index}`}>
                         <div className="post-container" key={index}>
                             <h2 key={index.userId} style={{ textAlign: `center` }}>Post <span>{post.id}</span></h2>
@@ -63,4 +68,4 @@ const Posts = () => {
         );
     }
 };
-export default Posts;
+export default Posts; */
