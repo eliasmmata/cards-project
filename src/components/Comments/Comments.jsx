@@ -1,4 +1,4 @@
-import { getComments, postComment, deleteCommentApi } from "../../Api/Api";
+import { getComments, postComment, deleteComments, updateComments } from "../../Api/Api";
 import { useState, useEffect } from "react";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
@@ -6,43 +6,56 @@ import CommentForm from "./CommentForm";
 import './Comments.scss';
 
 
-function generateRandomDate() {
+export function generateRandomDate() {
     return new Date(+(new Date()) - Math.floor(Math.random() * 10000000000));
 }
 
 
 const Comments = ({ currentUserId }) => {
+    // Ver comentarios al clickar
+    const [showComments, setShowComments] = useState(false);
+     // Cambiar texto para ocultar comentarios
+    const [buttonText, setButtonText] = useState(false);
+
+    const onClick = () => {
+        setShowComments(!showComments);
+        setButtonText(!buttonText);
+    }
+   
     const [error, setError] = useState(null);
 
     const [isLoaded, setIsLoaded] = useState(false);
 
-
     const [backendComments, setBackendComments] = useState([]);
+
+    const [activeComment, setActiveComment] = useState(null);
 
     const rootComments = backendComments.filter(
         backendComment => backendComment.postId < 2
     );
+
     const getReplies = (commentId) => {
         return backendComments
             .filter(backendComment => backendComment.postId === commentId)
+            .filter(backendComment => backendComment.email !== "Eliseo@gardner.biz")
             .sort(
                 (a, b) =>
-                new Date(a.date).getTime() - new Date(a.date).getTime()
-            );
+                    new Date(a.date).getTime() - new Date(a.date).getTime()
+            )
     };
 
-    const addComment = (text, postId) => {
-        // console.log('addComment', text, "creado", createdAt);
-        postComment(text).then(comment => {
+    const addComment = (text, parentId) => {
+        console.log('comentario Añadido', text, 'parentId', parentId);
+        postComment(text, parentId).then((comment) => {
             setBackendComments([comment, ...backendComments]);
-            console.log( currentUserId)
-            console.log( comment)
+            setActiveComment(null);
         })
     }
 
+
     const deleteComment = (commentId) => {
-        if(window.confirm('¿ Estás seguro de borrar tu comentario ?')) {
-            deleteCommentApi(commentId).then(() => {
+        if (window.confirm('¿ Estás seguro de borrar tu comentario ?')) {
+            deleteComments(commentId).then(() => {
                 const updatedBackendComments = backendComments.filter(
                     (backendComment) => backendComment.id !== commentId
                 )
@@ -50,13 +63,25 @@ const Comments = ({ currentUserId }) => {
             })
         }
     }
+    
+    const updateComment = (text, commentId) => {
+        updateComments(text).then(() => {
+            const updatedBackendComments = backendComments.map((backendComment) => {
+                if (backendComment.id === commentId) {
+                    return { ...backendComment, body: text };
+                }
+                return backendComment;
+            });
+            setBackendComments(updatedBackendComments);
+            setActiveComment(null);
+        });
+    };
 
     useEffect(() => {
         getComments().then(
             (data) => {
                 setBackendComments(data);
                 setIsLoaded(true);
-                // console.log('backendComments', data);
             },
             (error) => {
                 setIsLoaded(true);
@@ -71,11 +96,16 @@ const Comments = ({ currentUserId }) => {
         return <div style={{ textAlign: `center` }}>Loading...</div>;
     } else {
         return (
-            <div className="comments" style={{ border: `1px solid blue`, margin: `0px 2rem 1rem`, padding: `5px` }}>
-                <h3 className="comments-title" style={{ textAlign: `center` }}>Comentarios</h3>
-                <div className="comment-form-title">Escribe tu comentario</div>
+            <div className="comments-container">
+                <div className="comments-form-title">
+                    <p style={{textAlign:`right`, margin: `0`, padding:`0 1rem 1rem 3rem`, fontSize: `1.5rem`}}>{rootComments.length} comentarios</p>
+                </div>
                 <CommentForm submitLabel="Enviar" handleSubmit={addComment} />
-                <div className="comments-container">
+                <p
+                onClick={onClick}
+                className="comments-read"> {buttonText ? 'Ocultar comentarios' : 'Ver comentarios anteriores' }</p>
+                {showComments ? 
+                <div className="comments-list">
                     {rootComments.map((rootComment, index) => (
                         <Comment
                             key={rootComment.id}
@@ -84,13 +114,16 @@ const Comments = ({ currentUserId }) => {
                             replies={getReplies(rootComment.id)}
                             currentUserId={currentUserId}
                             deleteComment={deleteComment}
+                            activeComment={activeComment}
+                            setActiveComment={setActiveComment}
+                            addComment={addComment}
+                            updateComment={updateComment}
                         />
                     ))}
-                </div>
+                </div> : null}
             </div>
         );
     }
 };
 
 export default Comments;
-

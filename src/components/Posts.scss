@@ -1,0 +1,69 @@
+@import '../index.scss';
+
+.post-with-comments-container {
+    border-bottom: 1px solid $greenLight;
+    margin: 1rem 1rem;
+    .post-container {
+        padding: 1rem;
+        & h2 {
+            text-transform: uppercase;
+            font-weight: 600;
+            & span {
+                background-color: $grey;
+                color: $blackMain;
+                border-radius: 50%;
+                border: 1px solid $blackMain;
+                padding: 0 0.9rem;
+                text-align: center;
+            }
+        }
+        & .post-container-info {
+            display:flex;
+            align-items: center;
+            border-bottom: 1px solid $grey;
+            margin-bottom: 1rem;
+            padding-top: 2rem;
+            & .post-container-info-image {
+                padding-right: 1rem;
+                & img {
+                    max-width: 5vh;
+                    max-height: 5vh;
+                    border: 1px solid $green;
+                    border-radius: 50%;
+                }
+            }
+            & .post-container-info-name {
+                & p {
+                    color: $green;
+                    margin: 0.25rem;
+                }
+                & #name {
+                    font-weight: bold;
+                }
+                & #date {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+        & .post-container-content {
+            display: grid;
+            grid-template-columns: 1.75fr 1fr;
+            padding-top: 2rem;
+            & h3 {
+                margin: auto;
+            }
+        }
+        #body-text {
+            border-bottom: 1px solid $greenLight;
+            padding: 2rem 0;
+            margin: 0;
+            & span {
+                display: block;
+                font-size: 1.5rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $green;
+            }
+        }
+    }
+}

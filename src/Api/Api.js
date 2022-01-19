@@ -27,18 +27,23 @@ export const getComments = async () => {
     }
 }
 
-export const postComment = async (text, postId = null, userId = 999) => {
+export const postComment = async (text, parentId = null, postId = null, userId = 999) => {
     return  {
-        id: Math.floor(Math.random() * 1000),
-        body: text,
         postId,
-        userId: userId,
+        id: Math.floor(Math.random() * 1000),
         userName: "UserCanEdit",
         email: "usermail@mail.com",
+        body: text,
+        parentId,
+        userId: userId,
         createdAt: new Date().toLocaleDateString('es-ES')
     }
 }
 
-export const deleteCommentApi = async () => {
+export const deleteComments = async () => {
     return {};
+  };
+
+export const updateComments = async (text) => {
+    return { text };
   };
