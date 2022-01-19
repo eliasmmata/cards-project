@@ -6,6 +6,7 @@ import './Posts.scss';
 import PaginationComponent from "./Pagination/Pagination";
 
 const Posts = () => {
+    
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -32,7 +33,9 @@ const Posts = () => {
     } else {
         return (
             <div>
-                <PaginationComponent/>
+                <PaginationComponent
+                    
+                />
                 {posts.map((post, index) => (
                     <div className="post-with-comments-container" key={`${post.userId}${index}`}>
                         <div className="post-container" key={index}>

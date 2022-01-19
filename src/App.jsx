@@ -1,8 +1,8 @@
 import React from 'react';
-import Posts from './components/Posts';
 
 // ESTOS ESTILOS TIENEN QUE ESTAR LO ULTIMO 
 import './App.scss';
+import Posts from './Components/Posts';
 import './index.scss';
 
 

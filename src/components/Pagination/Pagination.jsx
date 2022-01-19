@@ -21,9 +21,9 @@ function PaginationComponent() {
     const [data, setData] = useState([]);
 
     const [currentPage, setcurrentPage] = useState(1);
-    const [itemsPerPage, setitemsPerPage] = useState(5);
+    const [itemsPerPage, /* setitemsPerPage */] = useState(5);
 
-    const [pageNumberLimit, setpageNumberLimit] = useState(5);
+    const [pageNumberLimit, /* setpageNumberLimit */] = useState(5);
     const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
     const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
