@@ -3,6 +3,7 @@ import Comments, { generateRandomDate } from "./Comments/Comments";
 import { getPosts } from "../Api/Api";
 
 import './Posts.scss';
+import PaginationComponent from "./Pagination/Pagination";
 
 const Posts = () => {
 
@@ -14,7 +15,6 @@ const Posts = () => {
         getPosts().then(
             (res) => {
                 setPosts(res);
-                // console.log(res.data);
                 setIsLoaded(true);
             },
             (error) => {
@@ -32,6 +32,7 @@ const Posts = () => {
     } else {
         return (
             <div>
+                <PaginationComponent/>
                 {posts.map((post, index) => (
                     <div className="post-with-comments-container" key={`${post.userId}${index}`}>
                         <div className="post-container" key={index}>
@@ -49,7 +50,7 @@ const Posts = () => {
                                 <h3 key={index.title}>{post.title.charAt(0).toUpperCase() + post.title.slice(1)}</h3>
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv-x75NT3_toz7u1Z8JcoZnWsn4AgTTHX-8COWPxKNxFc81bIJDYeIAbiohp154zQXFR8&usqp=CAU" alt="post img" />
                             </div>
-                            <p id="body-text" key={index.body}><span>Temática</span>{post.body}</p>
+                            <p id="body-text" key={index.body}><span>Temática</span>{post.body.charAt(0).toUpperCase() + post.body.slice(1)}</p>
                         </div>
                         <Comments currentUserId="999" />
                     </div>
