@@ -5,13 +5,10 @@ import { getPosts } from "../Api/Api";
 
 import TypedPosts from "../Types/Posts.type";
 
-
-import PaginationComponent from "./Pagination/Pagination";
 import './Posts.scss';
 
 
 const Posts = () => {
-    
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -20,7 +17,7 @@ const Posts = () => {
 
     useEffect(() => {
         getPosts().then(
-            (res:any) => {
+            (res: any) => {
                 setPosts(res);
                 setIsLoaded(true);
             },
@@ -32,6 +29,7 @@ const Posts = () => {
     }, []);
 
 
+
     if (error) {
         return <div>Error: {error/* .message */}</div>;
     } else if (!isLoaded) {
@@ -39,10 +37,7 @@ const Posts = () => {
     } else {
         return (
             <div>
-                <PaginationComponent
-                    
-                />
-                {posts.map((post:TypedPosts, index:any) => (
+                {posts.map((post: TypedPosts, index: any) => (
                     <div className="post-with-comments-container" key={`${post.userId}${index}`}>
                         <div className="post-container" key={index}>
                             <h2 key={index.userId} style={{ textAlign: `center` }}>Post <span>{post.id}</span></h2>
@@ -51,7 +46,7 @@ const Posts = () => {
                                     <img src="/favicon.ico" alt="post img" />
                                 </div>
                                 <div className="post-container-info-name">
-                                    <p id="name" key={index.userId}>{post.userId.toString().replace(post.userId, 'John Doe')}</p>
+                                    <p id="name" key={index.userId}>{post.userId.toString().replace(/[0-1]/g, 'John Doe')}</p>
                                     <p id="date" key={index.id}>{generateRandomDate().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                                 </div>
                             </div>

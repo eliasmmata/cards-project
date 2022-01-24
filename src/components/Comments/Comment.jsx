@@ -15,12 +15,12 @@ const Comment = ({
     updateComment,
     parentId = null,
 }) => {
-    
+
     /* console.log('parentid', parentId);
     console.log('comment', comment.email, 'comment id', comment.id, 'postId', comment.postId)
     console.log('Active comment', activeComment) */
-    
-    
+
+
 
     const fiveMinutes = 300000;
     const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
@@ -77,7 +77,7 @@ const Comment = ({
                 )}
                 <div className="comment-actions">
                     {canReply && (
-                        <div 
+                        <div
                             className="comment-action"
                             onClick={() =>
                                 setActiveComment({ id: comment.id, type: "replying", email: comment.email })
@@ -87,7 +87,7 @@ const Comment = ({
                         </div>
                     )}
                     {canEdit && (
-                        <div 
+                        <div
                             className="comment-action"
                             onClick={() =>
                                 setActiveComment({ id: comment.id, type: "editing" })
@@ -101,7 +101,7 @@ const Comment = ({
                             className="comment-action"
                             onClick={() => deleteComment(comment.id)}
                         >
-                            Delete
+                            Borrar
                         </div>
                     )}
                 </div>

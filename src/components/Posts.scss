@@ -11,7 +11,7 @@
             background-color: $blackMain;
             color: $blueLight;
             padding: 3rem 0;
-            width: calc(100% + 4rem);
+            /* width: calc(100% + 4rem); */
             margin-left: -2rem;
             & span {
                 background-color: $blueLight;
@@ -21,7 +21,7 @@
                 text-align: center;
                 padding: 4px 5px 8px 5px;
                 width:50px;
-                height:50px; 
+                height:50px;
                 display: inline-block;
             }
         }
