@@ -1,0 +1,56 @@
+@import '../../index.scss';
+
+.preloader-section {
+    background: linear-gradient(17deg, rgba(34,174,163,1) 16%, rgba(166,222,218,1) 62%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .preloader-container {
+
+        & #logo {
+            margin: -10vh auto 5vh auto;
+            animation: bounce, fadeIn;
+            filter: invert(11%) sepia(0%) saturate(9%) hue-rotate(102deg) brightness(66%) contrast(88%);
+        }
+        & #logo-name {
+            padding: 1rem 5rem;
+        }
+        h2, h3, a {
+            padding: 1rem 5rem;
+        }
+        & h2 {
+            color: #F3EADA;
+            font-weight: 800;
+            font-size: 35px;
+            line-height: 1em;
+            @include tablet {
+                font-size: 5rem;
+            }
+        }
+        & h3 {
+            font-size: 2.5rem;
+            color: #334B48;
+            font-weight: 400;
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+            @include tablet {
+                font-size: 3.5rem;
+            }
+
+        }
+        & a {
+            font-size: 2.5rem;
+            font-family: $green;
+            font-weight: 800;
+            color: #F3EADA;
+        }
+    }
+}
+.animate__animated {
+    animation-duration: 2s !important;
+
+}
+.animate__fadeInUp {
+    animation-duration: 3s !important;
+}

@@ -7,8 +7,18 @@ import Posts from './Components/Posts';
 import './index.scss';
 import './scss/App.scss';
 import PaginationComponent from './Components/Pagination/Pagination';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Preloader from './Components/Preloader/Preloader';
 
 function App() {
+
+  const [loadingEntrance, setLoadingEntrance] = useState(true);
+  // Animación entrada
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadingEntrance(false);
+    }, 114000)
+  }, []);
 
   const [posts, setPosts] = useState<TypedPosts[]>([]);
   const [loading, setLoading] = useState(false);
@@ -18,6 +28,9 @@ function App() {
   const [postsPerPage/* , setPostsPerPage */] = useState(10);
 
   useEffect(() => {
+    setTimeout(() => {
+      setLoadingEntrance(false);
+    }, 4000)
     getPosts().then(
       (res: any) => {
         setLoading(true);
@@ -37,14 +50,24 @@ function App() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   // Change page
-  const paginate = (pageNumber: React.SetStateAction<number>) => setCurrentPage(pageNumber)
+  const paginate = (pageNumber: React.SetStateAction<number>) => setCurrentPage(pageNumber);
+
+
 
   return (
     <div className="App">
       <header className="App-header">
       </header>
-      <Posts posts={currentPosts} loading={loading} error={error} />
-      <PaginationComponent postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+      <BrowserRouter>
+        <Routes>
+          {loadingEntrance ? <Route path="/" element={<Preloader />}></Route>
+            : <Route path="/" element={<Posts posts={currentPosts} loading={loading} error={error} />}></Route>
+          }
+          <Route path="/" element={<PaginationComponent postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />}>
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
