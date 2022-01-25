@@ -24,7 +24,7 @@ const Comments = ({ currentUserId }) => {
 
     const [error, setError] = useState(null);
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [backendComments, setBackendComments] = useState([]);
 
@@ -80,25 +80,28 @@ const Comments = ({ currentUserId }) => {
     useEffect(() => {
         getComments().then(
             (data) => {
+                setLoading(true);
                 setBackendComments(data);
-                setIsLoaded(true);
+                setLoading(false);
             },
             (error) => {
-                setIsLoaded(true);
+                setLoading(true);
                 setError(error)
             }
         );
     }, []);
 
     if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div style={{ textAlign: `center` }}>Loading...</div>;
+        return <div>Error: {error/* .message */}</div>;
+    } else if (loading) {
+        return  <div style={{ 'width': '100vw', height:`100vh`, marginTop:`45vh`}}>
+                    <i className="pi pi-spin pi-spinner" style={{ 'fontSize': '2em', display: `flex`, justifyContent: `center` }}></i>
+                </div>;
     } else {
         return (
             <div className="comments-container">
                 <div className="comments-form-title">
-                    <p style={{ textAlign: `right`, margin: `0`, padding: `0 1rem 1rem 3rem`, fontSize: `1.5rem` }}>{rootComments.length} comentarios</p>
+                    <p>{rootComments.length} comentarios</p>
                 </div>
                 <CommentForm submitLabel="Enviar" handleSubmit={addComment} />
                 <p
@@ -109,7 +112,7 @@ const Comments = ({ currentUserId }) => {
                     : <i className="pi pi-sort-amount-up" style={{'fontSize': '1em', marginLeft:`2rem`}}></i>
                     }
                 </p>
-                
+
                 {showComments ?
                     <div className="comments-list">
                         {rootComments.map((rootComment, index) => (

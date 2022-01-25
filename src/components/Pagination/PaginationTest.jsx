@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './Pagination.scss';
 
 
-function PaginationComponent() {
+function PaginationTest() {
     const renderData = (data) => {
         return (
             <ul className="testPag">
@@ -125,4 +125,4 @@ function PaginationComponent() {
     );
 }
 
-export default PaginationComponent;
+export default PaginationTest;

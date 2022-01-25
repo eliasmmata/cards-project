@@ -1,45 +1,42 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Comments, { generateRandomDate } from "./Comments/Comments";
-import { getPosts } from "../Api/Api";
 
 import TypedPosts from "../Types/Posts.type";
 
 import './Posts.scss';
 
 
-const Posts = () => {
+type ChildrenProps = {
+    posts: TypedPosts[],
+    loading: boolean,
+    error: any,
+}
 
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [posts, setPosts] = useState<TypedPosts[]>([]);
+const Posts = ({ error, loading, posts }: ChildrenProps) => {
 
+    // BORRAR POSTS SOLO DEL LADO CLIENTE SIN BORRAR DEL BACKEND
+    const [/* post */, setList] = useState<any>([]);
 
-    useEffect(() => {
-        getPosts().then(
-            (res: any) => {
-                setPosts(res);
-                setIsLoaded(true);
-            },
-            (error: Error) => {
-                setIsLoaded(true);
-                setError(error as never);
-            }
-        );
-    }, []);
-
-
+    const deletePost = (index:any) => {
+        alert('Estás seguro de borrar el post ')
+        var updatePostList = posts
+        updatePostList.splice(index,1);
+        setList([...updatePostList])
+    }
 
     if (error) {
         return <div>Error: {error/* .message */}</div>;
-    } else if (!isLoaded) {
-        return <h3 style={{ textAlign: `center` }}>Loading...</h3>;
+    } else if (loading) {
+        return <div style={{ 'width': '100vw', height: `100vh`, marginTop: `45vh` }}>
+            <i className="pi pi-spin pi-spinner" style={{ 'fontSize': '2em', display: `flex`, justifyContent: `center` }}></i>
+        </div>;
     } else {
         return (
-            <div>
+            <section className="posts-container">
                 {posts.map((post: TypedPosts, index: any) => (
                     <div className="post-with-comments-container" key={`${post.userId}${index}`}>
-                        <div className="post-container" key={index}>
+                        <div className="post-container" key={post.id}>
                             <h2 key={index.userId} style={{ textAlign: `center` }}>Post <span>{post.id}</span></h2>
                             <div className="post-container-info">
                                 <div className="post-container-info-image">
@@ -55,12 +52,16 @@ const Posts = () => {
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv-x75NT3_toz7u1Z8JcoZnWsn4AgTTHX-8COWPxKNxFc81bIJDYeIAbiohp154zQXFR8&usqp=CAU" alt="post img" />
                             </div>
                             <p id="body-text" key={index.body}><span>Temática</span>{post.body.charAt(0).toUpperCase() + post.body.slice(1)}</p>
+                            <button className="delete-post"  onClick={() => deletePost(index)}>
+                                Borrar post {post.id}
+                                <i className="pi pi-trash"></i>
+                            </button>
                         </div>
                         <Comments currentUserId="999" />
                     </div>
-
-                ))}
-            </div>
+                ))
+                }
+            </section >
         );
     }
 };

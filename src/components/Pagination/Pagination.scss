@@ -7,22 +7,18 @@
     list-style: none;
     display: flex;
     justify-content: center;
-
-    width: 80%;
-}
-
-.page-numbers li {
-    margin: 0 1rem;
-    padding: 10px;
-    cursor: pointer;
-    color: $green;
-    display: flex;
-    align-items: center;
-    line-height: 0;
-}
-
-.page-numbers li.active {
-    color: $blueLight;
+    & li {
+        margin: 0 0.25rem;
+        padding: 10px;
+        cursor: pointer;
+        color: $green;
+        display: flex;
+        align-items: center;
+        line-height: 0;
+        & .active {
+            color: $blueLight;
+        }
+    }
 }
 
 // icono flechas librería

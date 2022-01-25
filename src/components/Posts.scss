@@ -1,76 +1,111 @@
 @import '../index.scss';
 
-.post-with-comments-container {
-    border-bottom: 1px solid $greenLight;
-    margin: 1rem 1rem;
-    .post-container {
-        padding: 1rem;
-        & h2 {
-            text-transform: uppercase;
-            font-weight: 600;
-            background-color: $blackMain;
-            color: $blueLight;
-            padding: 3rem 0;
-            /* width: calc(100% + 4rem); */
-            margin-left: -2rem;
-            & span {
-                background-color: $blueLight;
-                color: $green;
-                border-radius: 50%;
-                border: 0.6rem solid $greenLight;
-                text-align: center;
-                padding: 4px 5px 8px 5px;
-                width:50px;
-                height:50px;
-                display: inline-block;
-            }
+.posts-container {
+    @include tablet {
+        background-color: #e7f7f8;
+        padding: 1rem 10vw;
+        /* display: grid;
+        grid-template-columns: 1fr 1fr; */
+    }
+
+    & .post-with-comments-container {
+        margin-bottom: 4rem;
+        border-radius: 3px;
+        background-color: white;
+        @include tablet {
+            padding-bottom: 1rem;
         }
-        & .post-container-info {
-            display:flex;
-            align-items: center;
-            border-bottom: 1px solid $grey;
-            margin-bottom: 1rem;
-            padding-top: 2rem;
-            & .post-container-info-image {
-                padding-right: 1rem;
-                & img {
-                    max-width: 5vh;
-                    max-height: 5vh;
-                    border: 1px solid $green;
-                    border-radius: 50%;
-                }
-            }
-            & .post-container-info-name {
-                & p {
-                    color: $green;
-                    margin: 0.25rem;
-                }
-                & #name {
-                    font-weight: bold;
-                }
-                & #date {
-                    font-size: 1.5rem;
-                }
-            }
+        @include desktop {
+            /* border-bottom: 1px solid $greenLight; */
         }
-        & .post-container-content {
-            display: grid;
-            grid-template-columns: 1.75fr 1fr;
-            padding-top: 2rem;
-            & h3 {
-                margin: auto;
-            }
-        }
-        #body-text {
-            border-bottom: 1px solid $greenLight;
-            padding: 2rem 0;
-            margin: 0;
-            & span {
-                display: block;
-                font-size: 1.5rem;
-                font-weight: bold;
+        .post-container {
+            border-radius: 3px 3px 0 0;
+            & h2 {
                 text-transform: uppercase;
-                color: $green;
+                font-weight: 600;
+                background-color: $blackMain;
+                color: $blueLight;
+                padding: 2rem 0;
+                /* width: calc(100% + 4rem);
+                margin-left: -2rem; */
+                & span {
+                    background-color: $blueLight;
+                    color: $green;
+                    border-radius: 50%;
+                    border: 0.6rem solid $greenLight;
+                    text-align: center;
+                    padding: 4px 5px 8px 5px;
+                    width:50px;
+                    height:50px;
+                    display: inline-block;
+                }
+            }
+            & .post-container-info {
+                display:flex;
+                align-items: center;
+                border-bottom: 1px solid $grey;
+                margin-bottom: 1rem;
+                padding: 2rem 0;
+                margin: 0 2rem;
+                & .post-container-info-image {
+                    padding-right: 1rem;
+                    & img {
+                        max-width: 5vh;
+                        max-height: 5vh;
+                        border: 1px solid $green;
+                        border-radius: 50%;
+                    }
+                }
+                & .post-container-info-name {
+                    & p {
+                        color: $green;
+                        margin: 0.25rem;
+                    }
+                    & #name {
+                        font-weight: bold;
+                    }
+                    & #date {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+            & .post-container-content {
+                display: grid;
+                grid-template-columns: 1.75fr 1fr;
+                padding: 2rem 2rem 0rem 2rem;
+                & h3 {
+                    margin: auto;
+                }
+            }
+            #body-text {
+                border-bottom: 1px solid $greenLight;
+                padding: 2rem 0;
+                margin: 0 2rem;
+                & span {
+                    margin: 0 0 1rem 0;
+                    display: block;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    color: $green;
+                }
+            }
+            & .delete-post {
+                display: block;
+                margin: 2rem auto 0 auto;
+                padding: 1rem 3rem;
+                color: #fff;
+                background-color: #13505b;
+                border: none;
+                border-radius: 3px;
+                text-transform: uppercase;
+                font-size: 1.25rem;
+                & .pi {
+                    color: #fff;
+                    font-size: 1.5em;
+                    margin-left: 1rem;
+                    vertical-align: bottom;
+                }
             }
         }
     }

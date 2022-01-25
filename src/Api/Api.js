@@ -9,6 +9,8 @@ export const config = {
     }
 }
 
+// POSTS
+
 export const getPosts = async () => {
     try {
         const req = await axios.get(POSTS, config)
@@ -17,16 +19,6 @@ export const getPosts = async () => {
         console.log(error)
     }
 }
-
-export const getComments = async () => {
-    try {
-        const req = await axios.get(COMMENTS, config)
-        return req.data
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 export const postComment = async (text, parentId = null, postId = null, userId = 999) => {
     return  {
         postId,
@@ -39,6 +31,17 @@ export const postComment = async (text, parentId = null, postId = null, userId =
         createdAt: new Date().toLocaleDateString('es-ES')
     }
 }
+
+// COMENTARIOS
+export const getComments = async () => {
+    try {
+        const req = await axios.get(COMMENTS, config)
+        return req.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 export const deleteComments = async () => {
     return {};
