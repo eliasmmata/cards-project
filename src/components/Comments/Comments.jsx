@@ -17,7 +17,8 @@ const Comments = ({ currentUserId }) => {
     // Cambiar texto para ocultar comentarios
     const [buttonText, setButtonText] = useState(false);
 
-    const onClick = () => {
+    const showHideComments = () => {
+        console.log(rootComments.index);
         setShowComments(!showComments);
         setButtonText(!buttonText);
     }
@@ -105,7 +106,7 @@ const Comments = ({ currentUserId }) => {
                 </div>
                 <CommentForm submitLabel="Enviar" handleSubmit={addComment} />
                 <p
-                    onClick={onClick}
+                    onClick={showHideComments}
                     className="comments-read"> {buttonText ? 'Ocultar comentarios' : 'Ver comentarios'}
                     {!buttonText ?
                     <i className="pi pi-sort-amount-down-alt" style={{'fontSize': '1em', marginLeft:`2rem`}}></i>
@@ -129,7 +130,9 @@ const Comments = ({ currentUserId }) => {
                                 updateComment={updateComment}
                             />
                         ))}
+                        <i onClick={showHideComments} className="pi pi-times"></i>
                     </div> : null}
+
             </div>
         );
     }

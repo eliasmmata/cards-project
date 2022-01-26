@@ -23,17 +23,12 @@
             @include desktop {
                 grid-column: 1 / span 2;
             }
-        }
-        &:nth-child(2) {
-            @include desktop {
-                grid-column: 1 / span 0;
+            & #body-text {
+                min-height: 145px !important;
             }
         }
-        @include tablet {
-           /*  padding-bottom: 1rem; */
-        }
         @include desktop {
-            /* border-bottom: 1px solid $greenLight; */
+           height: 915px;
         }
         .post-container {
             border-radius: 3px 3px 0 0;

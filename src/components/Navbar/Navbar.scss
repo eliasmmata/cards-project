@@ -13,9 +13,10 @@ nav {
     & h3 {
         color: $grey;
         margin: 0 auto;
-        padding-right: 4rem;
-        @include tablet {
-            padding-right: 10rem;
+        text-align: center;
+        @include desktop {
+            width: 94%;
+            padding-right: 6%;
         }
     }
 }
