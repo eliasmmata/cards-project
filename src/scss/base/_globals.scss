@@ -16,8 +16,13 @@ body {
 }
 
 a {
+    all: initial;
     text-decoration: none;
+    font-family: $mainFont;
     color: inherit;
+    &:focus-visible {
+        outline: none;
+    }
 }
 
 img,
@@ -84,6 +89,13 @@ p {
 ul {
     padding: 0;
 }
+li, a {
+    all: initial;
+    font-family: $mainFont;
+    &:focus-visible {
+        outline: none;
+    }
+}
 
 button {
     font-weight: 100;
@@ -93,4 +105,21 @@ button {
 
 textarea:focus-visible {
     outline: none !important;
+}
+
+// Para molesto scroll vertical responsive !!
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+// Override Bootstrap styles
+.page-item:not(:first-child) .page-link {
+    margin-left: 0;
+}
+
+.page-link {
+    all: initial;
+    &:hover {
+        all: initial;
+    }
 }

@@ -1,0 +1,18 @@
+@import '../../index.scss';
+
+.bg-dark {
+    height: 10vh;
+    background-color: $green !important;
+    color: $blackMain !important;
+}
+nav {
+    margin-bottom: 2rem;
+    & h3 {
+        color: white;
+        margin: 0 auto;
+        padding-right: 6rem;
+        @include tablet {
+            padding-right: 10rem;
+        }
+    }
+}

@@ -1,11 +1,10 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Comments, { generateRandomDate } from "./Comments/Comments";
 
 import TypedPosts from "../Types/Posts.type";
 
 import './Posts.scss';
-
 
 type ChildrenProps = {
     posts: TypedPosts[],
@@ -28,12 +27,12 @@ const Posts = ({ error, loading, posts }: ChildrenProps) => {
     if (error) {
         return <div>Error: {error/* .message */}</div>;
     } else if (loading) {
-        return <div style={{ 'width': '100vw', height: `100vh`, marginTop: `45vh` }}>
+        return <div style={{ 'width': '90vw', height: `100vh`, marginTop: `45vh` }}>
             <i className="pi pi-spin pi-spinner" style={{ 'fontSize': '2em', display: `flex`, justifyContent: `center` }}></i>
         </div>;
     } else {
         return (
-            <section className="posts-container">
+            <section className="posts-container animate__animated animate__fadeIn">
                 {posts.map((post: TypedPosts, index: any) => (
                     <div className="post-with-comments-container" key={`${post.userId}${index}`}>
                         <div className="post-container" key={post.id}>

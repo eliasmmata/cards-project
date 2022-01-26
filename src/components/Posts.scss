@@ -1,19 +1,36 @@
 @import '../index.scss';
 
 .posts-container {
+    padding: 2rem;
     @include tablet {
-        background-color: #e7f7f8;
+        padding: 1rem 5vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5vw;
+    }
+    @include desktop {
         padding: 1rem 10vw;
-        /* display: grid;
-        grid-template-columns: 1fr 1fr; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 2.5vw;
     }
 
     & .post-with-comments-container {
         margin-bottom: 4rem;
         border-radius: 3px;
         background-color: white;
+        &:first-child {
+            @include desktop {
+                grid-column: 1 / span 2;
+            }
+        }
+        &:nth-child(2) {
+            @include desktop {
+                grid-column: 1 / span 0;
+            }
+        }
         @include tablet {
-            padding-bottom: 1rem;
+           /*  padding-bottom: 1rem; */
         }
         @include desktop {
             /* border-bottom: 1px solid $greenLight; */
@@ -81,6 +98,9 @@
                 border-bottom: 1px solid $greenLight;
                 padding: 2rem 0;
                 margin: 0 2rem;
+                @include tablet {
+                    min-height: 250px;
+                }
                 & span {
                     margin: 0 0 1rem 0;
                     display: block;
@@ -92,7 +112,7 @@
             }
             & .delete-post {
                 display: block;
-                margin: 2rem auto 0 auto;
+                margin: 2rem  auto;
                 padding: 1rem 3rem;
                 color: #fff;
                 background-color: #13505b;
@@ -100,6 +120,12 @@
                 border-radius: 3px;
                 text-transform: uppercase;
                 font-size: 1.25rem;
+                cursor: pointer;
+                transition: 0.5s;
+                opacity: 0.85;
+                    &:hover {
+                        opacity:  1;
+                    }
                 & .pi {
                     color: #fff;
                     font-size: 1.5em;
@@ -110,3 +136,18 @@
         }
     }
 }
+
+// Pequeña diferencia posts pares e impares
+.post-with-comments-container:nth-child(odd) {
+    background-image: url('/assets/img/background-post.jpeg');
+    background-color: #C3DEE2;
+    background-blend-mode: screen;
+    background-repeat: round;
+    /* filter: invert(93%) sepia(24%) saturate(266%) hue-rotate(152deg) brightness(90%) contrast(96%); */
+  }
+.post-with-comments-container:nth-child(even) {
+    background-image: url('/assets/img/background-post.jpeg');
+    background-color: #abe7ec;
+    background-blend-mode: screen;
+    background-repeat: round;
+  }

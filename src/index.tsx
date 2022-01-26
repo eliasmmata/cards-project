@@ -2,9 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
+import "bootstrap/dist/js/bootstrap";
 import 'normalize.css';
-import "primeicons/primeicons.css"; 
+import "primeicons/primeicons.css";
 import './index.scss';
+
 
 ReactDOM.render(
   <React.StrictMode>

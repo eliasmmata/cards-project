@@ -1,8 +1,9 @@
-@import '~bootstrap/scss/bootstrap-grid.scss';
 @import '~animate.css';
-
 @import './scss/base/fonts';
 @import './scss/base/variables';
-@import './scss/base/globals';
+@import '~bootstrap/scss/bootstrap-grid.scss';
+@import '~bootstrap/dist/css/bootstrap.css';
 @import './scss/base/mixins';
+@import './scss/base/globals';
+
 

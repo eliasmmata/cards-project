@@ -3,12 +3,16 @@ import TypedPosts from './Types/Posts.type';
 import { getPosts } from './Api/Api';
 import Posts from './Components/Posts';
 
-// ESTOS ESTILOS TIENEN QUE ESTAR LO ULTIMO
-import './index.scss';
-import './scss/App.scss';
 import PaginationComponent from './Components/Pagination/Pagination';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Preloader from './Components/Preloader/Preloader';
+import Navbar from './Components/Navbar/Navbar';
+
+// ESTOS ESTILOS TIENEN QUE ESTAR LO ULTIMO
+import './scss/App.scss';
+import './index.scss';
+
+
 
 function App() {
 
@@ -61,10 +65,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           {loadingEntrance ? <Route path="/" element={<Preloader />}></Route>
-            : <Route path="/" element={<Posts posts={currentPosts} loading={loading} error={error} />}></Route>
+            : <Route path="/" element={
+              <>
+                <Navbar></Navbar>
+                <Posts posts={currentPosts} loading={loading} error={error} />
+                <PaginationComponent postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+              </>
+            }></Route>
           }
-          <Route path="/" element={<PaginationComponent postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />}>
-          </Route>
+
 
         </Routes>
       </BrowserRouter>
