@@ -1,0 +1,122 @@
+@import '../../index.scss';
+
+.login-section {
+    padding: 3rem;
+    min-height: 100vh;
+    @include tablet {
+        padding: 7rem 25vw;
+    }
+    @include desktop {
+        padding: 10rem 30vw;
+    }
+    & .login-container {
+        & p {
+            font-weight: 400;
+            font-size: 2.25rem;
+        }
+        & #useMail {
+            margin-top: -1rem;
+            color: #6A6A6A;
+            font-weight: 100;
+            font-size: 1.5rem;
+            text-align: left;
+        }
+    }
+    & .session-container {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: space-evenly;
+        padding-bottom: 1rem;
+        & a {
+            width: 45%;
+            padding-bottom: 0.1rem;
+            color: $black;
+            font-size: 2rem;
+            text-align: center;
+        }
+    }
+    & h3 {
+        margin-top: 4rem;
+        text-align: left;
+        font-size: 2.75rem;
+        & span {
+        display: block;
+        }
+    }
+    & .buttons-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 3rem 0;
+        & button {
+            display: flex;
+            padding: 1.25rem 2.5rem 0.5rem 2.5rem;
+            border: none;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-size: 1.25rem;
+            @include tablet {
+                width: 45%;
+                justify-content: center;
+            }
+            cursor: pointer;
+            & .pi {
+                margin-top: -5px;
+                margin-right: 1rem;
+                color: white;
+            }
+        }
+        & #facebook-button {
+            background-color: #3B5998;
+            color: #f7f7f7;
+            font-weight: 500;
+        }
+        & #google-button {
+            background-color: white;
+            border: 1px solid rgb(101,101,101);
+            color: black;
+            font-weight: 500;
+            & .pi {
+                color: rgb(66,133,244);
+            }
+        }
+    }
+    & .register-form {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        & label {
+            text-align: left;
+            color: #6A6A6A;
+            font-size: 1.6rem;
+        }
+        & input {
+            margin: 1.5rem 0 3rem 0;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid rgb(109,109,109);
+            background: white;
+            &:focus-visible {
+                outline: none !important;
+            }
+        }
+        & .button-main {
+            margin-top: 2rem;
+            width: 70%;
+        }
+    }
+}
+
+.login-button {
+    background: $greenLight;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 1.25rem 1rem;
+    margin: 1rem auto 0 auto;
+    width: 70%;
+}
+/*Google logo colors*/
+.g-blue{ color:#4285F4; }
+.o-red{ color:#DB4437; }
+.o-yellow{ color:#F4B400; }
+.l-green{ color:#0F9D58; }

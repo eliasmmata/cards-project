@@ -95,6 +95,7 @@ ul {
 li, a {
     all: initial;
     font-family: $mainFont;
+    text-align: center;
     &:focus-visible {
         outline: none;
     }

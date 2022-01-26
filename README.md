@@ -35,3 +35,7 @@ Animación de entrada con librería Animate.css
 Paleta de colores https://coolors.co/119da4-0c7489-13505b-040404-d7d9ce
 
 Normalize.css
+
+# Futuras implementaciones
+
+Login Page con funcionalidad

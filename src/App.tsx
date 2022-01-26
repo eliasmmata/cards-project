@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import TypedPosts from './Types/Posts.type';
 import { getPosts } from './Api/Api';
 import Posts from './Components/Posts';
 
 import PaginationComponent from './Components/Pagination/Pagination';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Preloader from './Components/Preloader/Preloader';
 import Navbar from './Components/Navbar/Navbar';
+import Login from './pages/Login-page/Login-page';
 
 // ESTOS ESTILOS TIENEN QUE ESTAR LO ULTIMO
 import './scss/App.scss';
@@ -65,14 +67,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           {loadingEntrance ? <Route path="/" element={<Preloader />}></Route>
-            : <Route path="/" element={
+            : <Route path="/" element={<Login />}></Route>
+          }
+          <Route path="/posts" element={
               <>
                 <Navbar></Navbar>
                 <Posts posts={currentPosts} loading={loading} error={error} />
                 <PaginationComponent postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
               </>
             }></Route>
-          }
 
 
         </Routes>
