@@ -7,8 +7,8 @@ const Navbar = () => {
         <>
             <div className="collapse" id="navbarToggleExternalContent">
                 <div className="bg-dark p-4">
-                    <h5 className="text-white h4">Demo JSON placeholder API</h5>
-                    <span className="text-muted">Future Navbar implementation</span>
+                    <h5 className="h4">Demo JSON placeholder API</h5>
+                    <span style={{color:`white`}}>Future Navbar implementation</span>
                 </div>
             </div>
             <nav className="navbar navbar-dark bg-dark">

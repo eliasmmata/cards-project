@@ -23,6 +23,9 @@ a {
     &:focus-visible {
         outline: none;
     }
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 img,
@@ -95,6 +98,10 @@ li, a {
     &:focus-visible {
         outline: none;
     }
+    &:hover {
+        color: $green;
+        cursor: pointer;
+    }
 }
 
 button {
@@ -121,5 +128,8 @@ textarea:focus-visible {
     all: initial;
     &:hover {
         all: initial;
+        cursor: pointer;
+        color: $greenLight;
+        font-family: $mainFont;
     }
 }
