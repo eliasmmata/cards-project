@@ -5,10 +5,10 @@ import TypedPosts from './Types/Posts.type';
 import { getPosts } from './Api/Api';
 import Posts from './Components/Posts';
 
-import PaginationComponent from './Components/Pagination/Pagination';
 import Preloader from './Components/Preloader/Preloader';
-import Navbar from './Components/Navbar/Navbar';
 import Login from './pages/Login-page/Login-page';
+import PaginationComponent from './Components/Pagination/Pagination';
+import Navbar from './Components/Navbar/Navbar';
 
 // ESTOS ESTILOS TIENEN QUE ESTAR LO ULTIMO
 import './scss/App.scss';
@@ -19,12 +19,6 @@ import './index.scss';
 function App() {
 
   const [loadingEntrance, setLoadingEntrance] = useState(true);
-  // Animación entrada
-  useEffect(() => {
-    setTimeout(() => {
-      setLoadingEntrance(false);
-    }, 114000)
-  }, []);
 
   const [posts, setPosts] = useState<TypedPosts[]>([]);
   const [loading, setLoading] = useState(false);
@@ -34,15 +28,16 @@ function App() {
   const [postsPerPage/* , setPostsPerPage */] = useState(10);
 
   useEffect(() => {
+     // Animación entrada
     setTimeout(() => {
       setLoadingEntrance(false);
     }, 4000)
     getPosts().then(
-      (res: any) => {
+      (res) => {
         setLoading(true);
         setPosts(res);
         setLoading(false);
-        console.log(res);
+        console.log(typeof error);
       },
       (error) => {
         setLoading(true);

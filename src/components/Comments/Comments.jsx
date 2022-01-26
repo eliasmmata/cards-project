@@ -18,7 +18,6 @@ const Comments = ({ currentUserId }) => {
     const [buttonText, setButtonText] = useState(false);
 
     const showHideComments = () => {
-        console.log(rootComments.index);
         setShowComments(!showComments);
         setButtonText(!buttonText);
     }

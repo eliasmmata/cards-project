@@ -13,7 +13,7 @@ const Login = () => {
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormData>();
   const onSubmit = handleSubmit(data => console.log(data));
 
-  if(errors) {
+  if(!errors) {
     console.log(errors);
   }
 

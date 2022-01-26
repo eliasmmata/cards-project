@@ -4,10 +4,8 @@ import './Pagination.scss';
 type ChildrenPropsPagination = {
     postsPerPage: number,
     totalPosts: number,
-    paginate: any
+    paginate: Function
 }
-
-
 
 const PaginationComponent = ({ postsPerPage, totalPosts, paginate }: ChildrenPropsPagination) => {
 
@@ -27,7 +25,8 @@ const PaginationComponent = ({ postsPerPage, totalPosts, paginate }: ChildrenPro
                                 paginate(number);
                                 window.scrollTo({
                                     top: 0,
-                                    behavior: 'smooth'});
+                                    behavior: 'smooth'
+                                });
                                 e.preventDefault();
                             }}
                             href={number.toString()} className="page-link">

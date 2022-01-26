@@ -8,7 +8,7 @@ Resultados ofrecidos por la llamada GET de https://jsonplaceholder.typicode.com/
 
 Permitir al usuario administrar y visualizar los posts todos de los usuarios disponibles en la herramienta.
 
-Paginación.
+Paginación 10 posts por página.
 
 Eliminar post visualizados sólo desde el lado del cliente (sin afectar al backend).
 
