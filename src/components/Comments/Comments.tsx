@@ -1,3 +1,4 @@
+import React from "react";
 import { getComments, postComment, deleteComments, updateComments } from "../../Api/Api";
 import { useState, useEffect } from "react";
 import Comment from "./Comment";
@@ -5,13 +6,21 @@ import CommentForm from "./CommentForm";
 
 import './Comments.scss';
 
+import TypedComments from "../../Types/Comments.type";
+
+type ChildrenProps = {
+    comments: TypedComments[],
+    currentUserId: string,
+    handleCancel: any,
+    createdat: any,
+    email: any
+}
 
 export function generateRandomDate() {
     return new Date(+(new Date()) - Math.floor(Math.random() * 10000000000));
 }
 
-
-const Comments = ({ currentUserId }) => {
+const Comments = ({ currentUserId , handleCancel, createdat, email}: ChildrenProps) => {
     // Ver comentarios al clickar
     const [showComments, setShowComments] = useState(false);
     // Cambiar texto para ocultar comentarios
@@ -26,15 +35,15 @@ const Comments = ({ currentUserId }) => {
 
     const [loading, setLoading] = useState(false);
 
-    const [backendComments, setBackendComments] = useState([]);
+    const [backendComments, setBackendComments] = useState<TypedComments[]>([]);
 
-    const [activeComment, setActiveComment] = useState(null);
+    const [activeComment, setActiveComment] = useState<any>(null);
 
     const rootComments = backendComments.filter(
         backendComment => backendComment.postId < 2
     );
 
-    const getReplies = (commentId) => {
+    const getReplies = (commentId: number) => {
         return backendComments
             .filter(backendComment => backendComment.postId === commentId)
             .filter(backendComment => backendComment.email !== "Eliseo@gardner.biz")
@@ -44,18 +53,18 @@ const Comments = ({ currentUserId }) => {
             )
     };
 
-    const addComment = (text, parentId) => {
-        console.log('comentario Añadido', text, 'parentId', parentId);
-        postComment(text, parentId).then((comment) => {
+    const addComment = (text: string, parentId: null | undefined) => {
+        // console.log('comentario Añadido', text, 'parentId', parentId);
+        postComment(text, parentId).then((comment:any) => {
             setBackendComments([comment, ...backendComments]);
             setActiveComment(null);
         })
     }
 
 
-    const deleteComment = (commentId) => {
+    const deleteComment = (commentId: number) => {
         if (window.confirm('¿ Estás seguro de borrar tu comentario ?')) {
-            deleteComments(commentId).then(() => {
+            deleteComments(/* commentId */).then(() => {
                 const updatedBackendComments = backendComments.filter(
                     (backendComment) => backendComment.id !== commentId
                 )
@@ -64,7 +73,7 @@ const Comments = ({ currentUserId }) => {
         }
     }
 
-    const updateComment = (text, commentId) => {
+    const updateComment = (text: string, commentId: number) => {
         updateComments(text).then(() => {
             const updatedBackendComments = backendComments.map((backendComment) => {
                 if (backendComment.id === commentId) {
@@ -103,7 +112,7 @@ const Comments = ({ currentUserId }) => {
                 <div className="comments-form-title">
                     <p>{rootComments.length} comentarios</p>
                 </div>
-                <CommentForm submitLabel="Enviar" handleSubmit={addComment} />
+                <CommentForm submitLabel="Enviar" handleSubmit={addComment} handleCancel={handleCancel} />
                 <p
                     onClick={showHideComments}
                     className="comments-read"> {buttonText ? 'Ocultar comentarios' : 'Ver comentarios'}
@@ -127,7 +136,9 @@ const Comments = ({ currentUserId }) => {
                                 setActiveComment={setActiveComment}
                                 addComment={addComment}
                                 updateComment={updateComment}
-                            />
+                                createdat={createdat}
+                                email={email}
+                                handleCancel={handleCancel}                           />
                         ))}
                         <i onClick={showHideComments} className="pi pi-times"></i>
                     </div> : null}

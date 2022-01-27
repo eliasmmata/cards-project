@@ -2,6 +2,21 @@ import React from 'react';
 import CommentForm from './CommentForm';
 import './Comments.scss';
 
+type TypedComment = {
+    comment: any;
+    date: any;
+    replies: any;
+    currentUserId: string;
+    activeComment: any;
+    setActiveComment: any;
+    addComment: any;
+    deleteComment: any;
+    updateComment: any;
+    createdat: string;
+    email: string;
+    parentId?: null | undefined;
+    handleCancel: any;
+}
 
 const Comment = ({
     comment,
@@ -13,17 +28,12 @@ const Comment = ({
     addComment,
     deleteComment,
     updateComment,
+    handleCancel,
     parentId = null,
-}) => {
-
-    /* console.log('parentid', parentId);
-    console.log('comment', comment.email, 'comment id', comment.id, 'postId', comment.postId)
-    console.log('Active comment', activeComment) */
-
-
+}: TypedComment) => {
 
     const fiveMinutes = 300000;
-    const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
+    const timePassed = new Date().getTime() - new Date(comment.createdAt).getTime() > fiveMinutes;
 
     const canReply = Boolean(currentUserId);
 
@@ -55,12 +65,12 @@ const Comment = ({
             </div>
             <div className="comment-right-part">
                 <div className="comment-content">
-                    <div email={comment.email} className="comment-author">
+                    <div /* email={comment.email} */ className="comment-author">
                         {comment.username} {comment.email}
                     </div>
                     {comment.name !== undefined
-                        ? <div className='comment-date' date={date} style={{ marginRight: `3rem` }}>{date.toLocaleDateString('es-ES')}</div>
-                        : <div className='comment-date' createdat={comment.createdAt}>{comment.createdAt}</div>
+                        ? <div className='comment-date' /* date={date} */ style={{ marginRight: `3rem` }}>{date.toLocaleDateString('es-ES')}</div>
+                        : <div className='comment-date' /* createdat={comment.createdAt} */>{comment.createdAt}</div>
                     }
                 </div>
                 {!isEditing && <div className="comment-text">{comment.body.charAt(0).toUpperCase() + comment.body.slice(1)}</div>}
@@ -69,7 +79,7 @@ const Comment = ({
                         submitLabel="Actualizar"
                         hasCancelButton
                         initialText={comment.body}
-                        handleSubmit={(text) => updateComment(text, comment.id, parentId, replyId ,comment.postId)}
+                        handleSubmit={(text: string) => updateComment(text, comment.id, parentId, replyId, comment.postId)}
                         handleCancel={() => {
                             setActiveComment(null);
                         }}
@@ -105,15 +115,14 @@ const Comment = ({
                         </div>
                     )}
                 </div>
-                {isReplying &&  (
+                {isReplying && (
                     <CommentForm
                         submitLabel="Responder"
-                        handleSubmit={(text) => addComment(text, replyId)}
-                    />
+                        handleSubmit={(text: string) => addComment(text, replyId)} handleCancel={handleCancel}                    />
                 )}
                 {replies.length > 0 && (
                     <div className="replies">
-                        {replies.map((reply) => (
+                        {replies.map((reply: { id: React.Key | null | undefined; }) => (
                             <Comment
                                 comment={reply}
                                 key={reply.id}
@@ -128,7 +137,8 @@ const Comment = ({
                                 updateComment={updateComment}
                                 parentId={comment.id}
                                 email={comment.email}
-                            />
+                                handleCancel={handleCancel}
+                                />
                         ))}
                     </div>
                 )}

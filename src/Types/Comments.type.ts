@@ -9,6 +9,7 @@ export default interface TypedComments {
     parentId: number;
     userName: string;
     createdAt: string;
+    date: string;
 }
 
 

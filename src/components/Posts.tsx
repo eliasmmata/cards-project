@@ -9,10 +9,8 @@ import './Posts.scss';
 type ChildrenProps = {
     posts: TypedPosts[],
     loading: boolean,
-    error: null,
+    error: null
 }
-
-
 
 const Posts = ({ error, loading, posts }: ChildrenProps) => {
 
@@ -58,11 +56,11 @@ const Posts = ({ error, loading, posts }: ChildrenProps) => {
                                 <i className="pi pi-trash"></i>
                             </button>
                         </div>
-                        <Comments currentUserId="999" />
+                        <Comments currentUserId="999" comments={[]} handleCancel={undefined} createdat={undefined} email={undefined} />
                     </div>
                 ))
                 }
-            </section >
+            </section>
         );
     }
 };
