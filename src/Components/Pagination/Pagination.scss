@@ -1,0 +1,45 @@
+@import '../../index.scss';
+
+.page-numbers {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    & li {
+        margin: 0 0.25rem 0.5rem 0;
+        padding: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        line-height: 0;
+        & .active {
+            color: $blueLight;
+        }
+        & a {
+            color: $green;
+            cursor: pointer;
+            font-family: $mainFont;
+        }
+    }
+}
+
+// icono flechas librería
+.pi {
+    font-size: 2em;
+    color: $greenLight;
+    background-color: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.pi-angle-right:hover, .pi-angle-left:hover {
+    color: $green;
+}
+
+.loadmore {
+    padding: 1rem;
+    background-color: transparent;
+    color: red;
+    font-size: 2rem;
+    border: 1px solid $green;
+    cursor: pointer;
+}

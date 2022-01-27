@@ -1,0 +1,156 @@
+@import '../../index.scss';
+
+/* COMMENTS COMPONENT */
+.comments-container {
+    & .comments-form-title {
+      padding: 2rem;
+      & p {
+        text-align: right;
+         margin: 0;
+         font-size: 1.5rem;
+      }
+
+    }
+    & .comments-read {
+      text-align: center;
+      padding-bottom: 2rem;
+      margin: 0;
+      cursor: pointer;
+      @include desktop {
+        padding-bottom: 0;
+      }
+    }
+    & .comments-list {
+      & .pi {
+        margin-left: auto;
+        border: 1px solid;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin-bottom: -5px;
+        margin-right: -15px;
+        background: $green;
+        color: #EEF4F1;;
+      }
+      @include desktop {
+        background: #EEF4F1;
+        position: relative;
+        z-index: 999;
+        margin-top: -2px;
+        display: grid;
+      }
+    }
+  }
+
+
+/* COMMENT COMPONENT */
+.comment {
+    display: flex;
+    padding: 1rem;
+    max-height: 60vh;
+    overflow: scroll;
+    @include desktop {
+      padding-top: 3rem;
+    }
+}
+.comment-right-part {
+  width: 100%;
+}
+.comment-image-container {
+    width: 5vh;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    & img {
+      border-radius: 50px;
+      border: 1px solid $green;
+      width: 5vh;
+  }
+}
+.comment-content {
+  display: flex;
+  flex-direction: column;
+}
+.comment-author {
+  font-size: 1.5rem;
+  color: $green;
+}
+.comment-date {
+  font-size: 1.25rem;
+  color: $greenLight;
+}
+.comment-text {
+  font-size: 1.5rem;
+  border-radius: 6px;
+  padding: 0.75rem;
+  background-color: #F1F2F5;
+}
+// COMMENT FORM
+form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  & ::placeholder {
+    font-size: 1.5rem;
+    line-height: 4rem;
+    padding-left: 1rem;
+  }
+}
+.comment-form-textarea {
+  width: 100%;
+  border: 1px solid $grey;
+  border-radius: 3px;
+  background-color: #F1F2F5;
+  margin-bottom: 1rem;
+  line-height: 3rem;
+  height: 60px;
+  padding: 10px 10px;
+}
+.button-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+  .comment-form-button {
+    background: $green;
+    color: $white;
+    text-shadow: 0px 1px 0px $greenLight;
+    border: none;
+    border-radius: 3px;
+    padding: 1rem 4rem;
+    margin: 1rem 0 1.5rem 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+.comment-form-cancel-button {
+  margin-left: 10px;
+  padding: 0;
+}
+.comment-form-button:hover:enabled {
+  cursor: pointer;
+}
+
+.comment-form-button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.comment-actions {
+  display: flex;
+  font-size: 12px;
+  color: $green;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.comment-action {
+  margin-right: 8px;
+}
+
+.comment-action:hover {
+  text-decoration: underline;
+}
+
+.replies {
+  margin-top: 20px;
+}
