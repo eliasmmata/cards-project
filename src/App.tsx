@@ -44,7 +44,7 @@ function App() {
         setError(error);
       }
     );
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Get Current Posts
   const indexOfLastPost = currentPage * postsPerPage;
