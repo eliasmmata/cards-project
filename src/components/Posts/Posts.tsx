@@ -1,8 +1,8 @@
 
 import React, { useState } from "react";
-import Comments, { generateRandomDate } from "./Comments/Comments";
+import Comments, { generateRandomDate } from "../Comments/Comments";
 
-import TypedPosts from "../Types/Posts.type";
+import TypedPosts from "../../Types/Posts.type";
 
 import './Posts.scss';
 

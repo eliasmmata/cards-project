@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import TypedPosts from './Types/Posts.type';
 import { getPosts } from './Api/Api';
-import Posts from './Components/Posts';
+import Posts from './Components/Posts/Posts';
 
 import Preloader from './Components/Preloader/Preloader';
 import Login from './pages/Login-page/Login-page';
