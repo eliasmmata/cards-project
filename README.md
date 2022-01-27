@@ -4,7 +4,7 @@ Plataforma con “cards” para la visualización de posts o comentarios realiz
 
 Resultados ofrecidos por la llamada GET de https://jsonplaceholder.typicode.com/posts.
 
-Puedes verlo en
+Puedes verlo en https://cards-project-react.herokuapp.com/
 # Funcionalidades
 
 Permitir al usuario administrar y visualizar los posts todos de los usuarios disponibles en la herramienta.
