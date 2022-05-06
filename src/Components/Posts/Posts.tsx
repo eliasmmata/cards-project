@@ -39,7 +39,7 @@ const Posts = ({ error, loading, posts }: ChildrenProps) => {
                             <h2 key={posts[index].id} style={{ textAlign: `center` }}>Post <span>{post.id}</span></h2>
                             <div className="post-container-info">
                                 <div className="post-container-info-image">
-                                    <img src="/favicon.ico" alt="post img" />
+                                    <img src="/icon2.png" alt="post img" style={{background:`#fff`}} />
                                 </div>
                                 <div className="post-container-info-name">
                                     <p id="name" key={posts[index].userId}>{post.userId.toString().replace(/[0-1]/g, 'John Doe')}</p>
